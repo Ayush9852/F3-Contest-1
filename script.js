@@ -29,6 +29,6 @@ function decrement() {
 }
 
 function clearCount() {
-    count = 1;
+    count = 0;
     updateCount();
 }
