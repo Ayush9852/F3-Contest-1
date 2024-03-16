@@ -1,66 +1,34 @@
-let counting = 0;
+let count = 0; // Initial count value set to 1
+const countDisplay = document.getElementById('count-value');
+const errorDisplay = document.getElementById('error');
+const decrementButton = document.getElementById('decrement');
 
-const content = document.querySelector('#count');
-
-const inc = document.querySelector('#inc');
-
-const dec = document.querySelector('#dec');
-
-const clear = document.querySelector('#clear');
-
-let errorAppended = false;
-
-let clrpressed = false;
-
-inc.addEventListener('click',()=>{
-    counting++;
-    content.innerText= counting;
-    if(counting>0) clear.style.display = 'inline';
-    if (errorAppended) {
-        const errorElement = document.querySelector('.error');
-        if (errorElement) {
-            errorElement.remove();
-        }
-        errorAppended = false;
+function updateCount() {
+    countDisplay.textContent = count;
+    if (count === 0) {
+        decrementButton.disabled = true;
+        errorDisplay.style.display = 'block';
+    } else {
+        decrementButton.disabled = false;
+        errorDisplay.style.display = 'none';
     }
-    clrpressed = false;
-})
+}
 
+function increment() {
+    count++;
+    updateCount();
+}
 
-
-dec.addEventListener('click',()=>{
-    if(counting==1){
-        clear.style.display = 'none';
+function decrement() {
+    if (count > 0) {
+        count--;
+        updateCount();
+    } else {
+        errorDisplay.style.display = 'block';
     }
-    if(counting<=0 && !errorAppended){
-        const error = document.createElement('p');
-        error.className = 'error';
-        error.innerText = '\' Error :Cannot go below 0 \'';
-        const conDiv = document.querySelector('.con');
-        conDiv.insertAdjacentElement('afterend', error);
-        error.style.color = 'red';
-        error.style.marginTop = '2em';
-        errorAppended=true;
-    }
-    else if(counting>0){
-        counting--;
-        content.innerText= counting;
-    }
+}
 
-    clrpressed = false;
-})
-
-
-clear.addEventListener('click',()=>{
-    counting=0;
-    content.innerText= 0;
-    clear.style.display = 'none';
-    if (errorAppended) {
-        const errorElement = document.querySelector('.error');
-        if (errorElement) {
-            errorElement.remove();
-        }
-        errorAppended = false;
-    }
-    clrpressed = true;
-})
+function clearCount() {
+    count = 0;
+    updateCount();
+}
