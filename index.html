@@ -3,28 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Count</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Counter</title>
 </head>
 <body>
-    <section>
-        <h1>Counter using HTML</h1>
-        <div class="con">Your Current Count is: <span id="count">0</span></div>
-
-        <div class="all-btn">
-            <button id="dec">
-                Decrement
-            </button>
-            <button id="inc">
-                Increment
-            </button>
-            <button id="clear">
-                Clear
-            </button>
-        </div>
-    
-    </section>
-
-    <script src="script.js"></script>
+    <div id="counter">
+        <h1>Counter Using HTML</h1>
+        <div id="count">Your current count is: <span id="count-value">1</span></div>
+        <br>
+        <div id="error">Error: Cannot go below 0</div>
+        <button id="decrement" onclick="decrement()">Decrement</button>
+        <button id="increment" onclick="increment()">Increment</button>
+        <button id="clear" onclick="clearCount()">Clear</button>
+      </div>
+      <script src="script.js"></script>
 </body>
 </html>
